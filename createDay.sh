@@ -22,6 +22,12 @@ touch "$CLASS_FILE"
 
 sed "s/\${DAY}/$DAY/g" $TEMPLATE_FILE > "$CLASS_FILE"
 
+LINE_NUM=$(awk '/import/{i=NR} END{print i}' "$APPLICATION_FILE")
+
+sed -i '' "${LINE_NUM}a\\
+import advent.of.code.year2023.day.Day$DAY;\\
+" "$APPLICATION_FILE"
+
 LINE_NUM=$(awk '/}/{i=NR} END{print i-1}' "$APPLICATION_FILE")
 
 sed -i '' "${LINE_NUM}i\\
