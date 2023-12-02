@@ -17,6 +17,7 @@ target/
 .idea/misc.xml
 .idea/vcs.xml
 .idea/sonarlint
+.idea/uiDesigner.xml
 
 ### Eclipse ###
 .apt_generated

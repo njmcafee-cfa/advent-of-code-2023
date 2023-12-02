@@ -1,10 +1,7 @@
-package org.example;
+package advent.of.code.year2023.day;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import advent.of.code.year2023.template.DayTemplate;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -12,35 +9,14 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
-public class Day02 {
-    private static Long sumFirstMethod = 0L;
-    private static Long sumSecondMethod = 0L;
+public class Day02 extends DayTemplate {
 
-    private static final Path path = Paths.get("src/main/resources/day02/input_Day02.txt");
+    private final Map<Integer,Map<String,Integer>> colorHighValuesFromEachGame;
 
-    static void processFile() throws IOException {
-
-        Map<Integer, Map<String,Integer>> colorHighValuesFromEachGame = new HashMap<>();
-
-
-        List<String> lines = new ArrayList<>();
-
-        try(Stream<String> linesFromFile = Files.lines(path)){
-            linesFromFile.forEachOrdered(lines::add);
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
-
-        colorHighValuesFromEachGame = getColorHighValuesFromEachGame(lines);
-
-        firstProblem(colorHighValuesFromEachGame);
-
-        secondProblem(colorHighValuesFromEachGame);
-
-        System.out.println("First Method:  " + sumFirstMethod);
-        System.out.println("Second Method: " + sumSecondMethod);
+    public Day02() {
+        super("02");
+        this.colorHighValuesFromEachGame = getColorHighValuesFromEachGame(fileLines);
     }
 
     //Attempts:
@@ -50,7 +26,8 @@ public class Day02 {
     //  Second Problem:
     //    84538 - correct!
 
-    private static void firstProblem(Map<Integer,Map<String,Integer>> colorHighValuesFromEachGame) throws IOException {
+    @Override
+    protected void firstProblem() {
 
         Map<String,Integer> gamePossibilityColorMap = Map.of("red", 12, "green", 13, "blue", 14);
 
@@ -73,7 +50,7 @@ public class Day02 {
             });
 
             if (Boolean.TRUE.equals(gamePossibility.get())) {
-                sumFirstMethod += (long) gameId;
+                resultFirstProblem += (long) gameId;
             }
         });
     }
@@ -148,10 +125,11 @@ public class Day02 {
         return gameId;
     }
 
-    private static void secondProblem(Map<Integer,Map<String,Integer>> colorHighValuesFromEachGame) {
+    @Override
+    protected void secondProblem() {
         colorHighValuesFromEachGame.forEach((gameId,colorHighValues)->{
             Long gamePower = getGamePower(colorHighValues);
-            sumSecondMethod += gamePower;
+            resultSecondProblem += gamePower;
         });
     }
 
