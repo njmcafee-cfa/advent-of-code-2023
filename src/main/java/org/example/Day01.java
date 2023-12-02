@@ -13,7 +13,7 @@ public class Day01 {
     private static Long sumSecondMethod = 0L;
 
     static void processFile() {
-        Path path = Paths.get("src/main/resources/input_Day01.txt");
+        Path path = Paths.get("src/main/resources/day01/input_Day01.txt");
 
         try (Stream<String> lines = Files.lines(path)) {
             lines.forEachOrdered(line->{

@@ -18,7 +18,7 @@ public class Day02 {
     private static Long sumFirstMethod = 0L;
     private static Long sumSecondMethod = 0L;
 
-    private static final Path path = Paths.get("src/main/resources/input_Day02.txt");
+    private static final Path path = Paths.get("src/main/resources/day02/input_Day02.txt");
 
     static void processFile() throws IOException {
 
